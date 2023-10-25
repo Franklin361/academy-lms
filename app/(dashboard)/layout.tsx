@@ -13,8 +13,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="h-full bg-[#0F0F0F] text-white">
-      <div className="h-[80px] md:pl-56 fixed inset-y-0 w-full z-50 bg-black">
+    <div className="h-full bg-[#010409] text-white">
+      <div className="h-[80px] md:pl-56 fixed inset-y-0 w-full z-50">
         <Navbar />
       </div>
       <div className="hidden md:flex h-full w-56 flex-col fixed inset-y-0 z-50">
