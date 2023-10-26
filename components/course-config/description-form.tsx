@@ -38,8 +38,6 @@ export const DescriptionForm = ({
 }: DescriptionFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
-  const toggleEdit = () => setIsEditing((current) => !current);
-
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -47,6 +45,13 @@ export const DescriptionForm = ({
     defaultValues: {
       description: initialData?.description || ""
     },
+  });
+
+  const toggleEdit = () => setIsEditing((current) => {
+    if (!current) {
+      form.setValue('description', initialData.description || '')
+    }
+    return !current
   });
 
   const { isSubmitting, isValid } = form.formState;
@@ -63,10 +68,16 @@ export const DescriptionForm = ({
   }
 
   return (
-    <div className="mt-6 border bg-slate-100 rounded-md p-4">
-      <div className="font-medium flex items-center justify-between">
-        Course description
-        <Button onClick={toggleEdit} variant="ghost">
+    <div className="mt-12 border-white/50 border bg-[#272B33] rounded-md p-4 relative">
+      <div className={cn('font-medium flex items-center justify-between', isEditing ? '' : ' pt-2 flex-row-reverse text-sm')}>
+
+        <span className={cn(
+          ' bg-[#272B33] ',
+          isEditing ? 'text-lg' : 'absolute -top-5 left-2 text-md p-1 rounded-full px-3 border border-white/50 text-[#99E1D9]'
+        )}>
+          Course description
+        </span>
+        <Button onClick={toggleEdit} variant="ghost" className='border border-white/50 hover:bg-gray-600'>
           {isEditing ? (
             <>Cancel</>
           ) : (
@@ -76,15 +87,16 @@ export const DescriptionForm = ({
             </>
           )}
         </Button>
+        {!isEditing && (
+          <p className={cn(
+            "mt-2 text-lg text-white/70",
+            !initialData.description && "text-slate-500 italic"
+          )}>
+            {initialData.description || "No description"}
+          </p>
+        )}
       </div>
-      {!isEditing && (
-        <p className={cn(
-          "text-sm mt-2",
-          !initialData.description && "text-slate-500 italic"
-        )}>
-          {initialData.description || "No description"}
-        </p>
-      )}
+
       {isEditing && (
         <Form {...form}>
           <form
@@ -98,6 +110,7 @@ export const DescriptionForm = ({
                 <FormItem>
                   <FormControl>
                     <Textarea
+                      autoFocus
                       disabled={isSubmitting}
                       placeholder="e.g. 'This course is about...'"
                       {...field}
@@ -111,6 +124,7 @@ export const DescriptionForm = ({
               <Button
                 disabled={!isValid || isSubmitting}
                 type="submit"
+
               >
                 Save
               </Button>

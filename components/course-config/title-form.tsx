@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { cn } from '@/lib/utils';
 
 interface TitleFormProps {
   initialData: {
@@ -46,7 +47,12 @@ export const TitleForm = ({
     defaultValues: initialData,
   });
 
-  const toggleEdit = () => setIsEditing((current) => !current);
+  const toggleEdit = () => setIsEditing((current) => {
+    if (!current) {
+      form.setValue('title', initialData.title)
+    }
+    return !current
+  });
 
   const { isSubmitting, isValid } = form.formState;
 
@@ -62,10 +68,18 @@ export const TitleForm = ({
   }
 
   return (
-    <div className="mt-6 border rounded-md p-4 bg-[#272B33]">
-      <div className="font-medium flex items-center justify-between">
-        Course title
-        <Button onClick={toggleEdit} variant="ghost">
+    <div className="mt-12 border border-white/50 rounded-md p-4 bg-[#272B33] relative">
+      <div className={cn('font-medium flex items-center justify-between', isEditing ? '' : 'text-sm pt-2 flex-row-reverse')}>
+
+        <p className={cn(
+          'bg-[#272B33]',
+          !isEditing ? 'absolute -top-5 left-2 text-md p-1 rounded-full px-3 border border-white/50 text-[#99E1D9]' : 'text-xl'
+        )}>
+          Course title
+          {/* <span className=''>Course title</span> */}
+        </p>
+
+        <Button onClick={toggleEdit} variant="ghost" className='border border-white/50 hover:bg-gray-600'>
           {isEditing ? (
             <>Cancel</>
           ) : (
@@ -75,12 +89,12 @@ export const TitleForm = ({
             </>
           )}
         </Button>
+        {!isEditing && (
+          <p className="text-lg text-white/70">
+            {initialData.title}
+          </p>
+        )}
       </div>
-      {!isEditing && (
-        <p className="text-sm mt-2">
-          {initialData.title}
-        </p>
-      )}
       {isEditing && (
         <Form {...form}>
           <form
@@ -96,6 +110,7 @@ export const TitleForm = ({
                     <Input
                       disabled={isSubmitting}
                       autoFocus
+                      className='text-lg'
                       placeholder="e.g. 'Advanced web development'"
                       {...field}
                     />
@@ -109,7 +124,7 @@ export const TitleForm = ({
                 disabled={!isValid || isSubmitting}
                 type="submit"
               >
-                Save
+                Save new title
               </Button>
             </div>
           </form>
