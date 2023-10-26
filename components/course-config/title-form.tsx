@@ -76,7 +76,6 @@ export const TitleForm = ({
           !isEditing ? 'absolute -top-5 left-2 text-md p-1 rounded-full px-3 border border-white/50 text-[#99E1D9]' : 'text-xl'
         )}>
           Course title
-          {/* <span className=''>Course title</span> */}
         </p>
 
         <Button onClick={toggleEdit} variant="ghost" className='border border-white/50 hover:bg-gray-600'>

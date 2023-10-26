@@ -1,4 +1,5 @@
 import { DescriptionForm } from '@/components/course-config/description-form';
+import { ImageForm } from '@/components/course-config/image-form';
 import { TitleForm } from '@/components/course-config/title-form';
 import { IconBadge } from '@/components/icon-badge';
 import { db } from '@/lib/db';
@@ -86,6 +87,10 @@ const Course = async ({ params }: Props) => {
               initialData={{
                 description: 'some des'
               } as any}
+              courseId={'1'}
+            />
+            <ImageForm
+              initialData={{} as any}
               courseId={'1'}
             />
           </div>
