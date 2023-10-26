@@ -82,7 +82,7 @@ const CreatePage = () => {
               <Button
                 type="button"
                 variant="ghost"
-                onClick={() => router.push('/')}
+                onClick={() => router.push('/teacher/courses')}
               >
                 Cancel
               </Button>

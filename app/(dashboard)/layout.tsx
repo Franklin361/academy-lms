@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import { Sidebar } from './_components/sidebar'
-import { Navbar } from './_components/navbar'
+import { Sidebar } from '@/components/sidebar'
+import { Navbar } from '@/components/navbar'
 
 export const metadata: Metadata = {
   title: 'Academy - Dashboard',
