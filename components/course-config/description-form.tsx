@@ -69,7 +69,7 @@ export const DescriptionForm = ({
 
   return (
     <div className="mt-12 border-white/50 border bg-[#272B33] rounded-md p-4 relative">
-      <div className={cn('font-medium flex items-center justify-between', isEditing ? '' : ' pt-2 flex-row-reverse text-sm')}>
+      <div className={cn('font-medium flex items-center justify-between', isEditing ? '' : ' pt-2 flex-row-reverse text-sm gap-5')}>
 
         <span className={cn(
           ' bg-[#272B33] ',
@@ -89,7 +89,7 @@ export const DescriptionForm = ({
         </Button>
         {!isEditing && (
           <p className={cn(
-            "mt-2 text-lg text-white/70",
+            "mt-2 text-lg text-white/70 truncate",
             !initialData.description && "text-slate-500 italic"
           )}>
             {initialData.description || "No description"}
@@ -114,6 +114,7 @@ export const DescriptionForm = ({
                       disabled={isSubmitting}
                       placeholder="e.g. 'This course is about...'"
                       {...field}
+                      className='min-h-[150px]'
                     />
                   </FormControl>
                   <FormMessage />
