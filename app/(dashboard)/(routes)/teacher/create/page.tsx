@@ -13,7 +13,7 @@ import toast from 'react-hot-toast';
 import { z } from 'zod';
 
 const formSchema = z.object({
-  title: z.string().min(1, { message: 'Title is required' })
+  title: z.string().trim().min(1, { message: 'Title is required' })
 })
 
 type FormSchema = z.infer<typeof formSchema>
