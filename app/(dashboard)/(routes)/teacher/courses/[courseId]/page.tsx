@@ -1,3 +1,4 @@
+import { AttachmentForm } from '@/components/course-config/attachment-form';
 import { CategoryForm } from '@/components/course-config/category-form';
 import { DescriptionForm } from '@/components/course-config/description-form';
 import { ImageForm } from '@/components/course-config/image-form';
@@ -110,7 +111,7 @@ const Course = async ({ params }: Props) => {
           </div>
           <div className="space-y-6">
             <div>
-              <div className="flex items-center gap-x-2">
+              <div className="flex items-center gap-x-2 mb-14">
                 <IconBadge icon={ListChecks} />
                 <h2 className="text-xl">
                   Course chapters
@@ -122,7 +123,7 @@ const Course = async ({ params }: Props) => {
               /> */}
             </div>
             <div>
-              <div className="flex items-center gap-x-2">
+              <div className="flex items-center gap-x-2 my-10">
                 <IconBadge icon={CircleDollarSign} />
                 <h2 className="text-xl">
                   Sell your course
@@ -134,16 +135,18 @@ const Course = async ({ params }: Props) => {
               />
             </div>
             <div>
-              <div className="flex items-center gap-x-2">
+              <div className="flex items-center gap-x-2 my-10">
                 <IconBadge icon={File} />
                 <h2 className="text-xl">
                   Resources & Attachments
                 </h2>
               </div>
-              {/* <AttachmentForm
-                initialData={course}
-                courseId={course.id}
-              /> */}
+              <AttachmentForm
+                initialData={{
+                  attachments: []
+                } as any}
+                courseId={'1'}
+              />
             </div>
           </div>
         </div>
