@@ -1,4 +1,5 @@
 import { Banner } from '@/components/banner';
+import { ChapterAccessForm } from '@/components/chapter/chapter-access-form';
 import { ChapterDescriptionForm } from '@/components/chapter/chapter-description-form';
 import { ChapterTitleForm } from '@/components/chapter/chapter-title-form';
 import { IconBadge } from '@/components/icon-badge';
@@ -110,11 +111,11 @@ const Chapter = async ({ params: { chapterId, courseId } }: Props) => {
                   Access Settings
                 </h2>
               </div>
-              {/* <ChapterAccessForm
-                initialData={chapter}
-                courseId={params.courseId}
-                chapterId={params.chapterId}
-              /> */}
+              <ChapterAccessForm
+                initialData={{ isFree: false } as any}
+                courseId={'1'}
+                chapterId={'1'}
+              />
             </div>
           </div>
           <div>
