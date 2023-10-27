@@ -97,7 +97,11 @@ const Chapter = async ({ params: { chapterId, courseId } }: Props) => {
                 courseId={'1'}
                 chapterId={'1'}
               />
-
+              <ChapterDescriptionForm
+                initialData={{ description: 'dasdasdasd' } as any}
+                courseId={'1'}
+                chapterId={'1'}
+              />
             </div>
             <div>
               <div className="flex items-center gap-x-2 mt-8">
