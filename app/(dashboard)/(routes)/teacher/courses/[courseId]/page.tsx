@@ -1,3 +1,4 @@
+import { CategoryForm } from '@/components/course-config/category-form';
 import { DescriptionForm } from '@/components/course-config/description-form';
 import { ImageForm } from '@/components/course-config/image-form';
 import { TitleForm } from '@/components/course-config/title-form';
@@ -85,13 +86,25 @@ const Course = async ({ params }: Props) => {
             />
             <DescriptionForm
               initialData={{
-                description: 'some des'
+                description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                
+                It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.`
               } as any}
               courseId={'1'}
             />
             <ImageForm
               initialData={{} as any}
               courseId={'1'}
+            />
+            <CategoryForm
+              initialData={{} as any}
+              courseId={''}
+              // options={categories.map((category) => ({
+              //   label: category.name,
+              //   value: category.id,
+              // }))}
+              options={[{ label: 'category', value: 'value' }]}
             />
           </div>
         </div>
