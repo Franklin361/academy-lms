@@ -2,6 +2,7 @@ import { Banner } from '@/components/banner';
 import { ChapterAccessForm } from '@/components/chapter/chapter-access-form';
 import { ChapterDescriptionForm } from '@/components/chapter/chapter-description-form';
 import { ChapterTitleForm } from '@/components/chapter/chapter-title-form';
+import { ChapterVideoForm } from '@/components/chapter/chapter-video-form';
 import { IconBadge } from '@/components/icon-badge';
 import { db } from '@/lib/db';
 import { auth } from '@clerk/nextjs';
@@ -125,11 +126,11 @@ const Chapter = async ({ params: { chapterId, courseId } }: Props) => {
                 Add a video
               </h2>
             </div>
-            {/* <ChapterVideoForm
-              initialData={chapter}
-              chapterId={params.chapterId}
-              courseId={params.courseId}
-            /> */}
+            <ChapterVideoForm
+              initialData={{ videoUrl: '' } as any}
+              chapterId={'1'}
+              courseId={'1'}
+            />
           </div>
         </div>
       </div>
