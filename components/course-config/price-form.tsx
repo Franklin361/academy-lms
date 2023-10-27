@@ -105,6 +105,7 @@ export const PriceForm = ({
                 <FormItem>
                   <FormControl>
                     <Input
+                      autoFocus
                       type="number"
                       step="0.01"
                       disabled={isSubmitting}

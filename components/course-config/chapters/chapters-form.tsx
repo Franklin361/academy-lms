@@ -86,14 +86,20 @@ export const ChaptersForm = ({
   }
 
   return (
-    <div className="relative mt-6 border bg-slate-100 rounded-md p-4">
+    <div className="mt-12 border border-white/50 rounded-md p-4 bg-[#272B33] relative">
       {isUpdating && (
         <div className="absolute h-full w-full bg-slate-500/20 top-0 right-0 rounded-m flex items-center justify-center">
           <Loader2 className="animate-spin h-6 w-6 text-sky-700" />
         </div>
       )}
-      <div className="font-medium flex items-center justify-between">
-        Course chapters
+      <div className={cn('font-medium flex items-center justify-between', isCreating ? '' : 'text-sm pt-2 flex-row-reverse')}>
+
+        <p className={cn(
+          'bg-[#272B33]',
+          !isCreating ? 'absolute -top-5 left-2 text-md p-1 rounded-full px-3 border border-white/50 text-[#99E1D9]' : 'text-xl'
+        )}>
+          Course chapters
+        </p>
         <Button onClick={toggleCreating} variant="ghost">
           {isCreating ? (
             <>Cancel</>
@@ -104,6 +110,12 @@ export const ChaptersForm = ({
             </>
           )}
         </Button>
+
+        {(!isCreating && initialData.chapters.length === 0) && (
+          <p className="text-lg text-white/70">
+            No chapters
+          </p>
+        )}
       </div>
       {isCreating && (
         <Form {...form}>
@@ -118,6 +130,7 @@ export const ChaptersForm = ({
                 <FormItem>
                   <FormControl>
                     <Input
+                      autoFocus
                       disabled={isSubmitting}
                       placeholder="e.g. 'Introduction to the course'"
                       {...field}
@@ -131,17 +144,17 @@ export const ChaptersForm = ({
               disabled={!isValid || isSubmitting}
               type="submit"
             >
-              Create
+              Create chapter
             </Button>
           </form>
         </Form>
       )}
       {!isCreating && (
         <div className={cn(
-          "text-sm mt-2",
+          `text-sm mt-2 animate-fade-in`,
           !initialData.chapters.length && "text-slate-500 italic"
         )}>
-          {!initialData.chapters.length && "No chapters"}
+
           <ChaptersList
             onEdit={onEdit}
             onReorder={onReorder}
@@ -149,7 +162,7 @@ export const ChaptersForm = ({
           />
         </div>
       )}
-      {!isCreating && (
+      {!isCreating && !(initialData.chapters.length === 0) && (
         <p className="text-xs text-muted-foreground mt-4">
           Drag and drop to reorder the chapters
         </p>

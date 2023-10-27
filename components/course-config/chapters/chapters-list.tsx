@@ -12,6 +12,7 @@ import { Grip, Pencil } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
+import ActionTooltip from '../../action-tooltip';
 
 interface ChaptersListProps {
   items: Chapter[];
@@ -62,7 +63,7 @@ export const ChaptersList = ({
   }
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
+    <DragDropContext onDragEnd={onDragEnd} >
       <Droppable droppableId="chapters">
         {(provided) => (
           <div {...provided.droppableProps} ref={provided.innerRef}>
@@ -72,19 +73,21 @@ export const ChaptersList = ({
                 draggableId={chapter.id}
                 index={index}
               >
-                {(provided) => (
+                {(provided, { isDragging }) => (
                   <div
                     className={cn(
-                      "flex items-center gap-x-2 bg-slate-200 border-slate-200 border text-slate-700 rounded-md mb-4 text-sm",
-                      chapter.isPublished && "bg-sky-100 border-sky-200 text-sky-700"
+                      "flex items-center gap-x-2 bg-[#14161a] text-gray-100 border-slate-200 border rounded-md mb-4 text-sm",
+                      chapter.isPublished && "",
+                      isDragging && 'bg-[#525964] border-dashed'
                     )}
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                   >
                     <div
                       className={cn(
-                        "px-2 py-3 border-r border-r-slate-200 hover:bg-slate-300 rounded-l-md transition",
-                        chapter.isPublished && "border-r-sky-200 hover:bg-sky-200"
+                        "px-2 py-3 border-r border-r-slate-200 hover:bg-gray-400 hover:text-black rounded-l-md transition",
+                        chapter.isPublished && "",
+                        isDragging && 'bg-gray-400 text-black'
                       )}
                       {...provided.dragHandleProps}
                     >
@@ -92,7 +95,7 @@ export const ChaptersList = ({
                         className="h-5 w-5"
                       />
                     </div>
-                    {chapter.title}
+                    <span className='truncate'>{chapter.title}</span>
                     <div className="ml-auto pr-2 flex items-center gap-x-2">
                       {chapter.isFree && (
                         <Badge>
@@ -102,15 +105,19 @@ export const ChaptersList = ({
                       <Badge
                         className={cn(
                           "bg-slate-500",
-                          chapter.isPublished && "bg-sky-700"
+                          chapter.isPublished ? "bg-[#26CD4D]" : 'bg-[#F7C843]'
                         )}
                       >
                         {chapter.isPublished ? "Published" : "Draft"}
                       </Badge>
-                      <Pencil
-                        onClick={() => onEdit(chapter.id)}
-                        className="w-4 h-4 cursor-pointer hover:opacity-75 transition"
-                      />
+                      <ActionTooltip
+                        label='Edit chapter'
+                      >
+                        <Pencil
+                          onClick={() => onEdit(chapter.id)}
+                          className="w-4 h-4 cursor-pointer hover:opacity-75 transition"
+                        />
+                      </ActionTooltip>
                     </div>
                   </div>
                 )}

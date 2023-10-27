@@ -1,5 +1,6 @@
 import { AttachmentForm } from '@/components/course-config/attachment-form';
 import { CategoryForm } from '@/components/course-config/category-form';
+import { ChaptersForm } from '@/components/course-config/chapters/chapters-form';
 import { DescriptionForm } from '@/components/course-config/description-form';
 import { ImageForm } from '@/components/course-config/image-form';
 import { PriceForm } from '@/components/course-config/price-form';
@@ -117,10 +118,12 @@ const Course = async ({ params }: Props) => {
                   Course chapters
                 </h2>
               </div>
-              {/* <ChaptersForm
-                initialData={course}
-                courseId={course.id}
-              /> */}
+              <ChaptersForm
+                initialData={{
+                  chapters: []
+                } as any}
+                courseId={'1'}
+              />
             </div>
             <div>
               <div className="flex items-center gap-x-2 my-10">
