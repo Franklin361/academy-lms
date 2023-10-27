@@ -6,10 +6,8 @@ import { ImageForm } from '@/components/course-config/image-form';
 import { PriceForm } from '@/components/course-config/price-form';
 import { TitleForm } from '@/components/course-config/title-form';
 import { IconBadge } from '@/components/icon-badge';
-import { db } from '@/lib/db';
-import { auth } from '@clerk/nextjs';
 import { CircleDollarSign, File, LayoutDashboard, ListChecks } from 'lucide-react';
-import { redirect } from 'next/navigation';
+
 
 interface Props {
   params: { courseId: string }
@@ -120,7 +118,15 @@ const Course = async ({ params }: Props) => {
               </div>
               <ChaptersForm
                 initialData={{
-                  chapters: []
+                  chapters: [
+                    {
+                      id: '1',
+                      isFree: false,
+                      isPublished: false,
+                      position: 1,
+                      title: 'chapter'
+                    }
+                  ]
                 } as any}
                 courseId={'1'}
               />
