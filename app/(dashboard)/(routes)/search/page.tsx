@@ -1,4 +1,5 @@
 import { Categories } from '@/components/categories/categories'
+import { SearchInput } from '@/components/search-input'
 
 const SearchPage = async () => {
   // const { userId } = auth();
@@ -22,7 +23,7 @@ const SearchPage = async () => {
   return (
     <>
       <div className="px-6 pt-6 md:hidden md:mb-0 block">
-        {/* <SearchInput /> */}
+        <SearchInput />
       </div>
       <div className="p-6 space-y-4">
         <Categories

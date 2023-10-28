@@ -7,6 +7,7 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { dark } from '@clerk/themes';
+import { SearchInput } from '@/components/search-input';
 
 export const NavbarRoutes = () => {
   const { userId } = useAuth();
@@ -20,7 +21,7 @@ export const NavbarRoutes = () => {
     <>
       {isSearchPage && (
         <div className="hidden md:block">
-          {/* <SearchInput /> */}
+          <SearchInput />
         </div>
       )}
       <div className="flex gap-x-4 ml-auto items-center">
