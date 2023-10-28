@@ -3,7 +3,8 @@ const nextConfig = {
   images: {
     domains: [
       'cdn-icons-png.flaticon.com',
-      "utfs.io"
+      "utfs.io",
+      'www.pulsecarshalton.co.uk'
     ]
   }
 }

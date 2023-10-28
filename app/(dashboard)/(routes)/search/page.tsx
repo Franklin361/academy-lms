@@ -1,7 +1,16 @@
+import { getCourses } from '@/actions/get-courses';
 import { Categories } from '@/components/categories/categories'
+import { CoursesList } from '@/components/courses/courses-list';
 import { SearchInput } from '@/components/search-input'
 
-const SearchPage = async () => {
+interface Props {
+  searchParams: {
+    title: string;
+    categoryId: string;
+  }
+};
+
+const SearchPage = async ({ searchParams }: Props) => {
   // const { userId } = auth();
 
   // if (!userId) {
@@ -58,7 +67,10 @@ const SearchPage = async () => {
             },
           ]}
         />
-        {/* <CoursesList items={courses} /> */}
+        <CoursesList items={[
+          { id: '1', categoryId: '1', description: '1', isPublished: false, title: 'This is ashit ashitasd ashita a asd vasd This is ashit ashitasd ashita a asd vasd', price: 50, createdAt: new Date(), imageUrl: 'https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg', updatedAt: new Date(), userId: '1', category: { id: '1', name: 'Music' }, chapters: [], progress: 29 },
+          { id: '2', categoryId: '1', description: 'Thisdescription', isPublished: true, title: 'Working out your biceps 💪', price: 200, createdAt: new Date(), imageUrl: 'https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg', updatedAt: new Date(), userId: '1', category: { id: '1', name: 'Excersice' }, chapters: [{ id: '4' }, { id: '5' }], progress: null },
+        ]} />
       </div>
     </>
   )
