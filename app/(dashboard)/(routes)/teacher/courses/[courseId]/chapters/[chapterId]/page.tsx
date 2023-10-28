@@ -1,5 +1,6 @@
 import { Banner } from '@/components/banner';
 import { ChapterAccessForm } from '@/components/chapter/chapter-access-form';
+import { ChapterActions } from '@/components/chapter/chapter-actions';
 import { ChapterDescriptionForm } from '@/components/chapter/chapter-description-form';
 import { ChapterTitleForm } from '@/components/chapter/chapter-title-form';
 import { ChapterVideoForm } from '@/components/chapter/chapter-video-form';
@@ -76,12 +77,16 @@ const Chapter = async ({ params: { chapterId, courseId } }: Props) => {
                   Complete all fields 3/4
                 </span>
               </div>
-              {/* <ChapterActions
-                disabled={!isComplete}
-                courseId={params.courseId}
-                chapterId={params.chapterId}
-                isPublished={chapter.isPublished}
-              /> */}
+              <ChapterActions
+                // disabled={!isComplete}
+                // courseId={params.courseId}
+                // chapterId={params.chapterId}
+                // isPublished={chapter.isPublished}
+                disabled={false}
+                courseId={'1'}
+                chapterId={'1'}
+                isPublished={false}
+              />
             </div>
           </div>
         </div>

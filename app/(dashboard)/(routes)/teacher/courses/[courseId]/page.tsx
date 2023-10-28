@@ -1,3 +1,4 @@
+import { Actions } from '@/components/course-config/actions';
 import { AttachmentForm } from '@/components/course-config/attachment-form';
 import { CategoryForm } from '@/components/course-config/category-form';
 import { ChaptersForm } from '@/components/course-config/chapters/chapters-form';
@@ -69,6 +70,14 @@ const Course = async ({ params }: Props) => {
               Complete all the fields (1/6)
             </span>
           </div>
+          <Actions
+            // disabled={!isComplete}
+            // courseId={params.courseId}
+            // isPublished={course.isPublished}
+            disabled={false}
+            courseId={params.courseId}
+            isPublished={false}
+          />
         </div>
 
         <div className='grid grid-cols-1 md:grid-cols-2 gap-10 mt-8'>
