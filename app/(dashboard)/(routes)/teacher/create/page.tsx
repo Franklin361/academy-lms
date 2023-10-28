@@ -39,8 +39,8 @@ const CreatePage = () => {
   }
 
   return (
-    <div className="max-w-5xl mx-auto flex md:items-center md:justify-center h-3/4  p-6 lg:py-0 py-12">
-      <div>
+    <div className="max-w-5xl mx-auto flex md:items-center md:justify-center p-6 lg:py-0 py-12 md:mt-28 mt-10">
+      <div className=' mx-auto'>
         <h1 className="text-3xl font-bold">
           Name your course
         </h1>
