@@ -7,7 +7,8 @@ import { ImageForm } from '@/components/course-config/image-form';
 import { PriceForm } from '@/components/course-config/price-form';
 import { TitleForm } from '@/components/course-config/title-form';
 import { IconBadge } from '@/components/icon-badge';
-import { CircleDollarSign, File, LayoutDashboard, ListChecks } from 'lucide-react';
+import { ArrowLeft, CircleDollarSign, File, LayoutDashboard, ListChecks } from 'lucide-react';
+import Link from 'next/link';
 
 
 interface Props {
@@ -62,6 +63,15 @@ const Course = async ({ params }: Props) => {
   return (
     <>
       <div className='p-6  py-8'>
+        <div className='w-full'>
+          <Link
+            href={`/teacher/courses/`}
+            className="flex items-center text-sm hover:opacity-75 transition mb-6 w-fit"
+          >
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to all my courses
+          </Link>
+        </div>
         <div className='flex justify-between items-center'>
           <div className='flex flex-col gap-y-2'>
             <h1 className='text-4xl font-bold'>Course setup</h1>

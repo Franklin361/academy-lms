@@ -34,7 +34,7 @@ export const SidebarItem = ({
       type="button"
       className={cn(
         "group flex items-center gap-x-2 text-slate-500 text-sm font-[500] pl-6 transition-all hover:text-[#17BEBB] hover:bg-slate-300/20 relative",
-        isActive && "text-[#17BEBB] bg-sky-200/20  pointer-events-none font-bold"
+        isActive && "text-[#17BEBB] bg-sky-200/20  font-bold"
       )}
     >
       <div className="flex items-center gap-x-2 py-4">

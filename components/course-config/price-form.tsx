@@ -66,7 +66,7 @@ export const PriceForm = ({
       <div className={cn('font-medium flex items-center justify-between', isEditing ? '' : 'text-sm pt-2 flex-row-reverse')}>
         <p className={cn(
           'bg-[#272B33]',
-          !isEditing ? 'absolute -top-5 left-2 text-md p-1 rounded-full px-3 border border-white/50 text-[#99E1D9]' : 'text-xl'
+          !isEditing ? 'absolute -top-5 left-2 text-md p-1 rounded-full px-3 border border-white/50 text-[#99E1D9]' : ''
         )}>
           Course price
         </p>
@@ -82,7 +82,7 @@ export const PriceForm = ({
         </Button>
         {!isEditing && (
           <p className={cn(
-            "mt-2 text-lg text-white/70",
+            "mt-2  text-white/70",
             !initialData.price && "text-slate-500 italic"
           )}>
             {initialData.price

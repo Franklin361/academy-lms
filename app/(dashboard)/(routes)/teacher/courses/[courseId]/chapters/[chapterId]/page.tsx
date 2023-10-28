@@ -62,7 +62,7 @@ const Chapter = async ({ params: { chapterId, courseId } }: Props) => {
           <div className="w-full">
             <Link
               href={`/teacher/courses/${courseId}`}
-              className="flex items-center text-sm hover:opacity-75 transition mb-6"
+              className="flex items-center text-sm hover:opacity-75 transition mb-6 w-fit"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to course setup

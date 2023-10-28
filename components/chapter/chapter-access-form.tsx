@@ -71,7 +71,7 @@ export const ChapterAccessForm = ({
 
         <p className={cn(
           'bg-[#272B33]',
-          !isEditing ? 'absolute -top-5 left-2 text-md p-1 rounded-full px-3 border border-white/50 text-[#99E1D9]' : 'text-xl'
+          !isEditing ? 'absolute -top-5 left-2 text-md p-1 rounded-full px-3 border border-white/50 text-[#99E1D9]' : ''
         )}>
           Chapter access
         </p>
@@ -88,7 +88,7 @@ export const ChapterAccessForm = ({
         </Button>
         {!isEditing && (
           <p className={cn(
-            "mt-2 text-lg text-white",
+            "mt-2 text-white",
             !initialData.isFree && ""
           )}>
             {initialData.isFree ? (
@@ -118,7 +118,7 @@ export const ChapterAccessForm = ({
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormDescription>
-                      <span className='text-lg leading-6'>Check this box if you want to make this chapter free for preview</span>
+                      <span className=''>Check this box if you want to make this chapter free for preview</span>
                     </FormDescription>
                   </div>
                 </FormItem>

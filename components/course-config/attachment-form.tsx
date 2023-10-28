@@ -62,7 +62,7 @@ export const AttachmentForm = ({
       <div className={cn('font-medium flex items-center justify-between', isEditing ? 'mb-4' : 'text-sm flex-row-reverse')}>
         <p className={cn(
           'bg-[#272B33]',
-          !isEditing ? 'absolute -top-5 left-2 text-md p-1 rounded-full px-3 border border-white/50 text-[#99E1D9]' : 'text-xl'
+          !isEditing ? 'absolute -top-5 left-2 text-md p-1 rounded-full px-3 border border-white/50 text-[#99E1D9]' : ''
         )}>
           Course attachments
         </p>
@@ -79,7 +79,7 @@ export const AttachmentForm = ({
         </Button>
         <>
           {(initialData.attachments.length === 0 && !isEditing) && (
-            <p className="text-lg mt-2 text-slate-500 italic">
+            <p className="mt-2 text-slate-500 italic">
               No attachments yet
             </p>
           )}

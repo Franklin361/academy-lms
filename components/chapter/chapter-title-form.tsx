@@ -75,7 +75,7 @@ export const ChapterTitleForm = ({
 
         <p className={cn(
           'bg-[#272B33]',
-          !isEditing ? 'absolute -top-5 left-2 text-md p-1 rounded-full px-3 border border-white/50 text-[#99E1D9]' : 'text-xl'
+          !isEditing ? 'absolute -top-5 left-2 text-md p-1 rounded-full px-3 border border-white/50 text-[#99E1D9]' : ''
         )}>
           Chapter title
         </p>
@@ -91,7 +91,7 @@ export const ChapterTitleForm = ({
           )}
         </Button>
         {!isEditing && (
-          <p className="text-lg text-white/70 truncate">
+          <p className="  truncate">
             {initialData.title}
           </p>
         )}
@@ -111,7 +111,7 @@ export const ChapterTitleForm = ({
                     <Input
                       disabled={isSubmitting}
                       autoFocus
-                      className='text-lg'
+                      className=''
                       placeholder="e.g. '01 - Introduction'"
                       {...field}
                     />

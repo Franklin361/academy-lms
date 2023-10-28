@@ -75,7 +75,7 @@ export const ChapterDescriptionForm = ({
 
         <span className={cn(
           ' bg-[#272B33] ',
-          isEditing ? 'text-lg' : 'absolute -top-5 left-2 text-md p-1 rounded-full px-3 border border-white/50 text-[#99E1D9]'
+          isEditing ? '' : 'absolute -top-5 left-2 text-md p-1 rounded-full px-3 border border-white/50 text-[#99E1D9]'
         )}>
           Chapter description
         </span>
@@ -91,7 +91,7 @@ export const ChapterDescriptionForm = ({
         </Button>
         {(!isEditing && !initialData.description) && (
           <p className={cn(
-            "mt-2 text-lg text-white/70 truncate",
+            "mt-2 text-white/70 truncate",
             !initialData.description && "text-slate-500 italic"
           )}>
             No description
@@ -101,7 +101,9 @@ export const ChapterDescriptionForm = ({
 
       {
         initialData.description && !isEditing && (
-          <Preview value={initialData.description} />
+          <div className='mt-2 bg-[#1d1f23] rounded'>
+            <Preview value={initialData.description} />
+          </div>
         )
       }
 

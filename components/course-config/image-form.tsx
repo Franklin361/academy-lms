@@ -51,7 +51,7 @@ export const ImageForm = ({
 
         <p className={cn(
           'bg-[#272B33]',
-          !isEditing ? 'absolute -top-5 left-2 text-md p-1 rounded-full px-3 border border-white/50 text-[#99E1D9]' : 'text-xl'
+          !isEditing ? 'absolute -top-5 left-2 text-md p-1 rounded-full px-3 border border-white/50 text-[#99E1D9]' : ''
         )}>
           Course image
         </p>

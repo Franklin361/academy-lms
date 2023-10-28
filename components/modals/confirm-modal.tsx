@@ -29,10 +29,10 @@ export const ConfirmModal = ({
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            <span className='text-center text-3xl font-bold w-full inline-block'>Are you sure?</span>
+            <span className='text-center text-2xl font-bold w-full inline-block'>Are you sure?</span>
           </AlertDialogTitle>
           <AlertDialogDescription>
-            <p className='text-lg w-full inline-block text-center'>This action cannot be undone.</p>
+            <p className='w-full inline-block text-center text-lg'>This action cannot be undone.</p>
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter >

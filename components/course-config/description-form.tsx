@@ -73,7 +73,7 @@ export const DescriptionForm = ({
 
         <span className={cn(
           ' bg-[#272B33] ',
-          isEditing ? 'text-lg' : 'absolute -top-5 left-2 text-md p-1 rounded-full px-3 border border-white/50 text-[#99E1D9]'
+          isEditing ? '' : 'absolute -top-5 left-2 text-md p-1 rounded-full px-3 border border-white/50 text-[#99E1D9]'
         )}>
           Course description
         </span>
@@ -87,15 +87,18 @@ export const DescriptionForm = ({
             </>
           )}
         </Button>
-        {!isEditing && (
-          <p className={cn(
-            "mt-2 text-lg text-white/70 truncate",
-            !initialData.description && "text-slate-500 italic"
-          )}>
-            {initialData.description || "No description"}
+        {(!isEditing && !initialData.description) && (
+          <p className="text-slate-500 italic">
+            {initialData.title}
           </p>
         )}
       </div>
+
+      {(!isEditing && initialData.description) && (
+        <p className='mt-3'>
+          {initialData.description}
+        </p>
+      )}
 
       {isEditing && (
         <Form {...form}>

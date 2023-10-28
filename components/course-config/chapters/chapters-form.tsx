@@ -96,7 +96,7 @@ export const ChaptersForm = ({
 
         <p className={cn(
           'bg-[#272B33]',
-          !isCreating ? 'absolute -top-5 left-2 text-md p-1 rounded-full px-3 border border-white/50 text-[#99E1D9]' : 'text-xl'
+          !isCreating ? 'absolute -top-5 left-2 text-md p-1 rounded-full px-3 border border-white/50 text-[#99E1D9]' : ''
         )}>
           Course chapters
         </p>

@@ -30,6 +30,7 @@ const CreatePage = () => {
   const handleSubmit = async (data: FormSchema) => {
     try {
       const response = await axios.post("/api/courses", data);
+      router.refresh();
       router.push(`/teacher/courses/${response.data.id}`);
       toast.success("Course created");
       form.reset()
