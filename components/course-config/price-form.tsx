@@ -82,7 +82,7 @@ export const PriceForm = ({
         </Button>
         {!isEditing && (
           <p className={cn(
-            "mt-2  text-white/70",
+            "mt-2  text-white text-base",
             !initialData.price && "text-slate-500 italic"
           )}>
             {initialData.price

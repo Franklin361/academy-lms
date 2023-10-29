@@ -89,7 +89,7 @@ export const TitleForm = ({
           )}
         </Button>
         {!isEditing && (
-          <p className="">
+          <p className="text-base">
             {initialData.title}
           </p>
         )}

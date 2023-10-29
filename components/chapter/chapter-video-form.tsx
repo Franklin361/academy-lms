@@ -38,9 +38,9 @@ export const ChapterVideoForm = ({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}`, values);
-      toast.success("Chapter updated");
       toggleEdit();
       router.refresh();
+      toast.success("Chapter updated");
     } catch {
       toast.error("Something went wrong");
     }

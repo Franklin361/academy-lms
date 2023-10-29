@@ -95,7 +95,7 @@ export const DescriptionForm = ({
       </div>
 
       {(!isEditing && initialData.description) && (
-        <p className='mt-3'>
+        <p className='mt-3 text-base'>
           {initialData.description}
         </p>
       )}

@@ -59,6 +59,7 @@ export const ChaptersForm = ({
       await axios.post(`/api/courses/${courseId}/chapters`, values);
       toast.success("Chapter created");
       toggleCreating();
+      form.reset()
       router.refresh();
     } catch {
       toast.error("Something went wrong");
@@ -100,7 +101,7 @@ export const ChaptersForm = ({
         )}>
           Course chapters
         </p>
-        <Button onClick={toggleCreating} variant="ghost">
+        <Button onClick={toggleCreating} variant="ghost" className='border border-white/50 hover:bg-gray-600'>
           {isCreating ? (
             <>Cancel</>
           ) : (
@@ -112,7 +113,7 @@ export const ChaptersForm = ({
         </Button>
 
         {(!isCreating && initialData.chapters.length === 0) && (
-          <p className="text-lg text-white/70">
+          <p className="mt-2 text-slate-500 italic">
             No chapters
           </p>
         )}
@@ -151,7 +152,7 @@ export const ChaptersForm = ({
       )}
       {!isCreating && (
         <div className={cn(
-          `text-sm mt-2 animate-fade-in`,
+          `text-sm mt-4 animate-fade-in`,
           !initialData.chapters.length && "text-slate-500 italic"
         )}>
 

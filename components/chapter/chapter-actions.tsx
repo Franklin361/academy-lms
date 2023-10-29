@@ -29,15 +29,15 @@ export const ChapterActions = ({
     try {
       setIsLoading(true);
 
-      // if (isPublished) {
-      //   await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}/unpublish`);
-      //   toast.success("Chapter unpublished");
-      // } else {
-      //   await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}/publish`);
-      //   toast.success("Chapter published");
-      // }
+      if (isPublished) {
+        await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}/unpublish`);
+        toast.success("Chapter unpublished");
+      } else {
+        await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}/publish`);
+        toast.success("Chapter published");
+      }
 
-      // router.refresh();
+      router.refresh();
     } catch {
       toast.error("Something went wrong");
     } finally {
@@ -49,11 +49,11 @@ export const ChapterActions = ({
     try {
       setIsLoading(true);
 
-      // await axios.delete(`/api/courses/${courseId}/chapters/${chapterId}`);
+      await axios.delete(`/api/courses/${courseId}/chapters/${chapterId}`);
 
-      // toast.success("Chapter deleted");
-      // router.refresh();
-      // router.push(`/teacher/courses/${courseId}`);
+      toast.success("Chapter deleted");
+      router.refresh();
+      router.push(`/teacher/courses/${courseId}`);
     } catch {
       toast.error("Something went wrong");
     } finally {

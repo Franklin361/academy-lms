@@ -10,7 +10,6 @@ import { dark } from '@clerk/themes';
 import { SearchInput } from '@/components/search-input';
 
 export const NavbarRoutes = () => {
-  const { userId } = useAuth();
   const pathname = usePathname();
 
   const isTeacherPage = pathname?.startsWith("/teacher");

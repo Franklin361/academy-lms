@@ -20,20 +20,20 @@ export const CourseSidebar = async ({
   course,
   progressCount,
 }: CourseSidebarProps) => {
-  // const { userId } = auth();
+  const { userId } = auth();
 
-  // if (!userId) {
-  //   return redirect("/");
-  // }
+  if (!userId) {
+    return redirect("/");
+  }
 
-  // const purchase = await db.purchase.findUnique({
-  //   where: {
-  //     userId_courseId: {
-  //       userId,
-  //       courseId: course.id,
-  //     }
-  //   }
-  // });
+  const purchase = await db.purchase.findUnique({
+    where: {
+      userId_courseId: {
+        userId,
+        courseId: course.id,
+      }
+    }
+  });
 
   return (
     <div className="h-full border-r flex flex-col overflow-y-auto shadow-sm">
@@ -41,8 +41,7 @@ export const CourseSidebar = async ({
         <h1 className="font-semibold">
           {course.title}
         </h1>
-        {true && (
-          // {purchase && (
+        {purchase && (
           <div className="mt-10">
             <CourseProgress
               variant="success"
@@ -61,8 +60,7 @@ export const CourseSidebar = async ({
             label={chapter.title}
             isCompleted={!!chapter.userProgress?.[0]?.isCompleted}
             courseId={course.id}
-            isLocked={!chapter.isFree}
-          // isLocked={!chapter.isFree && !purchase}
+            isLocked={!chapter.isFree && !purchase}
           />
         ))}
       </div>

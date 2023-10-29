@@ -7,58 +7,67 @@ import { ImageForm } from '@/components/course-config/image-form';
 import { PriceForm } from '@/components/course-config/price-form';
 import { TitleForm } from '@/components/course-config/title-form';
 import { IconBadge } from '@/components/icon-badge';
+import { db } from '@/lib/db';
+import { auth } from '@clerk/nextjs';
 import { ArrowLeft, CircleDollarSign, File, LayoutDashboard, ListChecks } from 'lucide-react';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 
 interface Props {
   params: { courseId: string }
 }
 const Course = async ({ params }: Props) => {
-  // const { userId } = auth();
+  const { userId } = auth();
 
-  // if (!userId) {
-  //   return redirect("/");
-  // }
+  if (!userId) {
+    return redirect("/");
+  }
 
-  // const course = await db.course.findUnique({
-  //   where: {
-  //     id: params.courseId,
-  //     userId
-  //   },
-  //   include: {
-  //     chapters: {
-  //       orderBy: {
-  //         position: "asc",
-  //       },
-  //     },
-  //     attachments: {
-  //       orderBy: {
-  //         createdAt: "desc",
-  //       },
-  //     },
-  //   },
-  // });
+  const course = await db.course.findUnique({
+    where: {
+      id: params.courseId,
+      userId
+    },
+    include: {
+      chapters: {
+        orderBy: {
+          position: "asc",
+        },
+      },
+      attachments: {
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
+    },
+  });
 
-  // if (!course) {
-  //   return redirect("/");
-  // }
+  const categories = await db.category.findMany({
+    orderBy: {
+      name: "asc",
+    },
+  });
 
-  // const requiredFields = [
-  //   course.title,
-  //   course.description,
-  //   course.imageUrl,
-  //   course.price,
-  //   course.categoryId,
-  //   course.chapters.some(chapter => chapter.isPublished),
-  // ];
+  if (!course) {
+    return redirect("/");
+  }
 
-  // const totalFields = requiredFields.length;
-  // const completedFields = requiredFields.filter(Boolean).length;
+  const requiredFields = [
+    course.title,
+    course.description,
+    course.imageUrl,
+    course.price,
+    course.categoryId,
+    course.chapters.some(chapter => chapter.isPublished),
+  ];
 
-  // const completionText = `(${completedFields}/${totalFields})`;
+  const totalFields = requiredFields.length;
+  const completedFields = requiredFields.filter(Boolean).length;
 
-  // const isComplete = requiredFields.every(Boolean);
+  const completionText = `(${completedFields}/${totalFields})`;
+
+  const isComplete = requiredFields.every(Boolean);
 
   return (
     <>
@@ -76,17 +85,13 @@ const Course = async ({ params }: Props) => {
           <div className='flex flex-col gap-y-2'>
             <h1 className='text-4xl font-bold'>Course setup</h1>
             <span className='text-sm text-slate-400'>
-              {/* Complete all the fields {completionText} */}
-              Complete all the fields (1/6)
+              Complete all the fields {completionText}
             </span>
           </div>
           <Actions
-            // disabled={!isComplete}
-            // courseId={params.courseId}
-            // isPublished={course.isPublished}
-            disabled={false}
+            disabled={!isComplete}
             courseId={params.courseId}
-            isPublished={false}
+            isPublished={course.isPublished}
           />
         </div>
 
@@ -99,32 +104,24 @@ const Course = async ({ params }: Props) => {
             </div>
 
             <TitleForm
-              initialData={{
-                title: 'Hello world 💪'
-              }}
-              courseId={'1'}
+              initialData={course}
+              courseId={params.courseId}
             />
             <DescriptionForm
-              initialData={{
-                description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                
-                It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.`
-              } as any}
-              courseId={'1'}
+              initialData={course}
+              courseId={params.courseId}
             />
             <ImageForm
-              initialData={{} as any}
-              courseId={'1'}
+              initialData={course}
+              courseId={params.courseId}
             />
             <CategoryForm
-              initialData={{} as any}
-              courseId={''}
-              // options={categories.map((category) => ({
-              //   label: category.name,
-              //   value: category.id,
-              // }))}
-              options={[{ label: 'category', value: 'value' }]}
+              initialData={course}
+              courseId={params.courseId}
+              options={categories.map((category) => ({
+                label: category.name,
+                value: category.id,
+              }))}
             />
           </div>
           <div className="space-y-6">
@@ -136,18 +133,8 @@ const Course = async ({ params }: Props) => {
                 </h2>
               </div>
               <ChaptersForm
-                initialData={{
-                  chapters: [
-                    {
-                      id: '1',
-                      isFree: false,
-                      isPublished: false,
-                      position: 1,
-                      title: 'chapter'
-                    }
-                  ]
-                } as any}
-                courseId={'1'}
+                initialData={course}
+                courseId={params.courseId}
               />
             </div>
             <div>
@@ -158,8 +145,8 @@ const Course = async ({ params }: Props) => {
                 </h2>
               </div>
               <PriceForm
-                initialData={{} as any}
-                courseId={'1'}
+                initialData={course}
+                courseId={params.courseId}
               />
             </div>
             <div>
@@ -170,10 +157,8 @@ const Course = async ({ params }: Props) => {
                 </h2>
               </div>
               <AttachmentForm
-                initialData={{
-                  attachments: []
-                } as any}
-                courseId={'1'}
+                initialData={course}
+                courseId={params.courseId}
               />
             </div>
           </div>

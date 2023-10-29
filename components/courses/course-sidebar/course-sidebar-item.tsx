@@ -39,6 +39,7 @@ export const CourseSidebarItem = ({
         isActive && "text-white bg-slate-200/10 hover:bg-slate-200/10 hover:text-white",
         isCompleted && "text-[#26CD4D] hover:text-[#26CD4D]",
         isCompleted && isActive && "bg-[#26CD4D]/20",
+        // isLocked && 'pointer-events-none'
       )}
     >
       <div className="flex items-center gap-x-2 py-4">

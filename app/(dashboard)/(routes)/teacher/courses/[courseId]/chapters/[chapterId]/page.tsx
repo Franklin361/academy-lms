@@ -16,43 +16,42 @@ interface Props {
 }
 const Chapter = async ({ params: { chapterId, courseId } }: Props) => {
 
-  // const { userId } = auth();
+  const { userId } = auth();
 
-  // if (!userId) {
-  //   return redirect("/");
-  // }
+  if (!userId) {
+    return redirect("/");
+  }
 
-  // const chapter = await db.chapter.findUnique({
-  //   where: {
-  //     id: chapterId,
-  //     courseId: courseId
-  //   },
-  //   include: {
-  //     muxData: true,
-  //   },
-  // });
+  const chapter = await db.chapter.findUnique({
+    where: {
+      id: chapterId,
+      courseId: courseId
+    },
+    include: {
+      muxData: true,
+    },
+  });
 
-  // if (!chapter) {
-  //   return redirect("/")
-  // }
+  if (!chapter) {
+    return redirect("/")
+  }
 
-  // const requiredFields = [
-  //   chapter.title,
-  //   chapter.description,
-  //   chapter.videoUrl,
-  // ];
+  const requiredFields = [
+    chapter.title,
+    chapter.description,
+    chapter.videoUrl,
+  ];
 
-  // const totalFields = requiredFields.length;
-  // const completedFields = requiredFields.filter(Boolean).length;
+  const totalFields = requiredFields.length;
+  const completedFields = requiredFields.filter(Boolean).length;
 
-  // const completionText = `(${completedFields}/${totalFields})`;
+  const completionText = `(${completedFields}/${totalFields})`;
 
-  // const isComplete = requiredFields.every(Boolean);
+  const isComplete = requiredFields.every(Boolean);
 
   return (
     <>
-      {/* {!chapter.isPublished && ( */}
-      {false && (
+      {!chapter.isPublished && (
         <Banner
           label="This chapter is unpublished. It will not be visible in the course"
         />
@@ -73,19 +72,14 @@ const Chapter = async ({ params: { chapterId, courseId } }: Props) => {
                   Chapter Creation
                 </h1>
                 <span className="text-sm text-slate-400">
-                  {/* Complete all fields {completionText} */}
-                  Complete all fields 3/4
+                  Complete all fields {completionText}
                 </span>
               </div>
               <ChapterActions
-                // disabled={!isComplete}
-                // courseId={params.courseId}
-                // chapterId={params.chapterId}
-                // isPublished={chapter.isPublished}
-                disabled={false}
-                courseId={'1'}
-                chapterId={'1'}
-                isPublished={false}
+                disabled={!isComplete}
+                courseId={courseId}
+                chapterId={chapterId}
+                isPublished={chapter.isPublished}
               />
             </div>
           </div>
@@ -100,14 +94,14 @@ const Chapter = async ({ params: { chapterId, courseId } }: Props) => {
                 </h2>
               </div>
               <ChapterTitleForm
-                initialData={{ title: 'asdasdasd ' }}
-                courseId={'1'}
-                chapterId={'1'}
+                initialData={chapter}
+                courseId={courseId}
+                chapterId={chapterId}
               />
               <ChapterDescriptionForm
-                initialData={{ description: 'dasdasdasd' } as any}
-                courseId={'1'}
-                chapterId={'1'}
+                initialData={chapter}
+                courseId={courseId}
+                chapterId={chapterId}
               />
             </div>
             <div>
@@ -118,9 +112,9 @@ const Chapter = async ({ params: { chapterId, courseId } }: Props) => {
                 </h2>
               </div>
               <ChapterAccessForm
-                initialData={{ isFree: false } as any}
-                courseId={'1'}
-                chapterId={'1'}
+                initialData={chapter}
+                courseId={courseId}
+                chapterId={chapterId}
               />
             </div>
           </div>
@@ -132,9 +126,9 @@ const Chapter = async ({ params: { chapterId, courseId } }: Props) => {
               </h2>
             </div>
             <ChapterVideoForm
-              initialData={{ videoUrl: '' } as any}
-              chapterId={'1'}
-              courseId={'1'}
+              initialData={chapter}
+              courseId={courseId}
+              chapterId={chapterId}
             />
           </div>
         </div>
