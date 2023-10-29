@@ -59,8 +59,8 @@ const ChapterIdPage = async ({
           label="You need to purchase this course to watch this chapter."
         />
       )}
-      <div className="flex flex-col max-w-4xl mx-auto pb-20 mt-10 ">
-        <div className="rounded-md overflow-hidden border-2 border-white/50 mb-10">
+      <div className="flex flex-col max-w-4xl mx-auto mt-10 h-fit">
+        <div className="rounded-md mb-5 h-auto">
           <VideoPlayer
             chapterId={params.chapterId}
             title={chapter.title}
@@ -71,12 +71,24 @@ const ChapterIdPage = async ({
             completeOnEnd={completeOnEnd}
           />
         </div>
-        <div>
+        <div className='mb-10'>
           <div className="p-4 flex flex-col md:flex-row items-center justify-between">
             <h2 className="text-3xl font-semibold mb-2">
               {chapter.title}
             </h2>
-
+            {purchase ? (
+              <CourseProgressButton
+                chapterId={params.chapterId}
+                courseId={params.courseId}
+                nextChapterId={nextChapter?.id}
+                isCompleted={!!userProgress?.isCompleted}
+              />
+            ) : (
+              <CourseEnrollButton
+                courseId={params.courseId}
+                price={course.price!}
+              />
+            )}
           </div>
           <Separator />
           <div className='mt-5'>
@@ -86,13 +98,13 @@ const ChapterIdPage = async ({
             <>
               <Separator />
               <div className="p-4">
-
+                <span className='mb-5 mt-2 text-gray-400 text-xl font-semibold inline-block'>Course Files</span>
                 {attachments.map((attachment) => (
                   <a
                     href={attachment.url}
                     target="_blank"
                     key={attachment.id}
-                    className="flex items-center p-3 w-full bg-sky-200 border text-sky-700 rounded-md hover:underline"
+                    className="flex items-center p-3 w-full gap-2 bg-[#272B33] hover:border-[#99E1D9] hover:text-[#99E1D9] border-white/50 border text-white rounded-md hover:underline transition-all"
                   >
                     <File />
                     <p className="line-clamp-1">

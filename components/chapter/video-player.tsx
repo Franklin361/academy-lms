@@ -75,12 +75,14 @@ export const VideoPlayer = ({
         <MuxPlayer
           title={title}
           className={cn(
+            'dark outline outline-offset-1 outline-white/50 rounded-md',
             !isReady && "hidden"
           )}
           onCanPlay={() => setIsReady(true)}
           onEnded={onEnd}
           autoPlay
           playbackId={playbackId}
+          accentColor='#99E1D9'
         />
       )}
     </div>
