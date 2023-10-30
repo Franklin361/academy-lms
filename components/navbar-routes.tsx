@@ -8,8 +8,10 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { dark } from '@clerk/themes';
 import { SearchInput } from '@/components/search-input';
+import { isTeacher } from '@/lib/teacher';
 
 export const NavbarRoutes = () => {
+  const { userId } = useAuth()
   const pathname = usePathname();
 
   const isTeacherPage = pathname?.startsWith("/teacher");
@@ -32,13 +34,14 @@ export const NavbarRoutes = () => {
             </Button>
           </Link>
         )
-          : (
+          : isTeacher(userId) ? (
             <Link href="/teacher/courses">
               <Button size="sm" variant="ghost">
                 Teacher mode
               </Button>
             </Link>
           )
+            : null
         }
         <UserButton
           afterSignOutUrl="/"
